@@ -28,15 +28,13 @@ repositories {
 
 dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
 }
 
-/*task fatJar(type: Jar) {
-    manifest {
-        attributes 'PalTracker': 'Gradle Jar File Example',
-                'Implementation-Version': 1.0,
-                'Main-Class': 'io.pivotal.pal.tracker.PalTrackerApplicaiton'
-    }
-    baseName = project.name + '-all'
-    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
-    with jar
-}*/
+bootRun.environment([
+        "WELCOME_MESSAGE": "hello",
+])
+
+test.environment([
+        "WELCOME_MESSAGE": "Hello from test",
+])
